@@ -6,18 +6,17 @@ import Search from './Search';
 import request from 'superagent';
 import './App.css';
 
-const POKEDEX_API_URL = 'https://pokedex-alchemy.herokuapp.com/api/pokedex';
+const POKEDEX_API = 'https://pokedex-alchemy.herokuapp.com/api/pokedex';
 
 class App extends Component {
   state = {
-    pokemon: []
+    pokemon: [],
   }
 
   async componentDidMount() {
-    const response = await request.get(POKEDEX_API_URL);
-    this.setState({ pokemon: response.body });
+    const response = await request.get(POKEDEX_API);
+    this.setState({ pokemon: response.body.results });
   }
-
 
   render() {
     const { pokemon } = this.state;
@@ -32,7 +31,8 @@ class App extends Component {
         </section>
 
         <main>
-          <PokemonList pokemon={pokemon} />
+
+          <PokemonList pokemonprop={pokemon} />
         </main>
 
         <Footer />
@@ -40,7 +40,6 @@ class App extends Component {
       </div>
     );
   }
-
 }
 
 export default App;

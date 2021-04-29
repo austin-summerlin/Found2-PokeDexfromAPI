@@ -6,15 +6,12 @@ import './PokemonList.css';
 class PokemonList extends Component {
 
   render() {
-
+    const { pokemonprop } = this.props;
     return (
       <ul className="PokemonList">
-        <PokemonItem />
-        <PokemonItem />
-        <PokemonItem />
-        <PokemonItem />
-        <PokemonItem />
-        <PokemonItem />
+        {pokemonprop.map(poke => (
+          <PokemonItem key={poke._id} poke={poke} />
+        ))}
       </ul>
     );
   }

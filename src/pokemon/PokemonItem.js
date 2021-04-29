@@ -4,17 +4,18 @@ import './PokemonItem.css';
 class PokemonItem extends Component {
 
   render() {
+    const { poke } = this.props;
 
     return (
       <li className="PokemonItem">
-        <h2>Pokemon</h2>
-        <p className="name">name</p>
+        <h2>{poke.pokemon}</h2>
+        <p className="type">{poke.type}</p>
 
-        <p className="type">type</p>
+        <p className="hp">{poke.hp}</p>
 
         <img
-          src="Ivy.png"
-          alt="Pokemon"
+          src={poke.url_image}
+          alt={poke.pokemon}
         />
 
       </li>

@@ -3,31 +3,28 @@ import './Search.css';
 
 export default class Search extends Component {
   state = {
-    nameFilter: '',
-    sortField: '',
-    typeFilter: ''
+    search: '',
   }
 
   handleNameChange = ({ target }) => {
-    this.setState({ nameFilter: target.value });
+    this.setState({ search: target.value });
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.onSearch(this.state);
   }
 
 
   render() {
-    const { nameFilter } = this.state;
+    const { search } = this.state;
 
     return (
       <form className="Search" onSubmit={this.handleSubmit}>
 
         <input
-          name="nameFilter"
-          value={nameFilter}
-          onChange={this.handleNameChange}
+          name="search"
+          value={search}
+          onChange={this.handleSearchChange}
         />
 
         <button>🔎</button>
