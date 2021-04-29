@@ -1,16 +1,34 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
+import Header from './Header';
+import Footer from './Footer';
+import PokemonList from '../pokemon/PokemonList';
+import Search from './Search';
 import './App.css';
-import React from 'react';
 
 class App extends Component {
+  state = {
+    pokemon: []
+  }
+
 
   render() {
+    const { pokemon } = this.state;
+
     return (
       <div className="App">
-  
-        My React App...
-        <img src="acl-logo.png" className="temp-images" alt="acl logo" />
-      
+
+        <Header />
+
+        <section className="pokemonSearch">
+          <Search />
+        </section>
+
+        <main>
+          <PokemonList pokemon={pokemon} />
+        </main>
+
+        <Footer />
+
       </div>
     );
   }

@@ -1,0 +1,17 @@
+.Header {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 75px 1fr;
+  grid-gap: 20px;
+  align-items: center;
+  background: white;
+  font-size: .9rem;
+  
+}
+
+.Header img {
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+}
+
