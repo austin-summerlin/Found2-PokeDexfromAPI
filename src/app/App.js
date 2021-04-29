@@ -19,7 +19,7 @@ class App extends Component {
 
         <Header />
 
-        <section className="pokemonSearch">
+        <section className="Search">
           <Search />
         </section>
 

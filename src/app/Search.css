@@ -1,4 +1,4 @@
-.pokemonSearch {
+.Search {
   background: pink;
   padding: 10px 20px;
   border-top: 1px solid black;
@@ -8,22 +8,23 @@
   flex-wrap: flex;
   align-items: center;
   justify-content: space-between;
+  flex-grow: 2;
 }
 
-.pokemonSearch input {
+.Search input {
   width: 200px;
   height: 30px;
   outline: 0;
   flex-grow: 2;
 }
 
-.pokemonSearch select {
+.Search select {
   width: 150px;
   height: 36px;
   flex-grow: 1;
 }
 
-.pokemonSearch button {
+.Search button {
   height: 36px;
   width: 36px;
   cursor: pointer;

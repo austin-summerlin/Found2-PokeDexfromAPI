@@ -1,26 +1,32 @@
-.CreatureItem {
+.PokemonItem {
   list-style: none;
   background: lightpink;
   padding: 10px;
+  border-radius: 5px;
+  border: solid 1px black;
+  padding: 10px;
   
+  height: 200px;
   display: grid;
-  grid-template-rows: 30px 120px 20px;
+  grid-template-rows: auto auto 1fr auto;
   grid-gap: 10px;
   
   justify-items: center;
+  justify-content: center;
 }
 
-.CreatureItem h2 {
+.PokemonItem h2 {
   margin: 0;
 }
 
-.CreatureItem img {
+.PokemonItem img {
   height: 100%;
   width: 100%;
+  min-height: 0;
   object-fit: contain;
 }
 
-.CreatureItem p {
+.PokemonItem p {
   margin: 0;
   font-size: .8rem;
 }
