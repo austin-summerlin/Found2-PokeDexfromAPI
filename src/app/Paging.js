@@ -2,14 +2,26 @@ import { Component } from 'react';
 import './Paging.css';
 
 export default class Paging extends Component {
-  state = {}
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+  }
 
   render() {
+    const { page, onPrev, onNext } = this.props;
+
     return (
       <form className="Paging" onSubmit={this.handleSubmit}>
-        <button className="prev">◀️</button>
-        <span>Page 1</span>
-        <button className="next">▶️</button>
+        <button
+          className="prev"
+          onClick={onPrev}
+          disabled={page < 2}
+        >◀️</button>
+        <span>{page}</span>
+        <button
+          className="next"
+          onClick={onNext}
+        >▶️</button>
       </form>
     );
   }

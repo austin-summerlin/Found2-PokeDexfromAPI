@@ -1,23 +1,17 @@
 .Header {
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 75px 1fr;
-  grid-gap: 20px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  background: white;
+  background: rgb(132, 151, 170);
   font-size: .9rem;
   font-family: Arial, Helvetica, sans-serif;
   color: pink;
-  padding: 0;
   
 }
 
 .Header img {
   object-fit: contain;
-  height: 150%;
-  width: 150%;
-}
-
-.Header h1 {
-  font-weight: 300;
+  height: 100%;
+  width: 100%;
 }

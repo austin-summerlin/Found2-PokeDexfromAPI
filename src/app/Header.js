@@ -12,9 +12,6 @@ class Header extends Component {
           alt="Ivy"
           src="Ivy2.png"
         />
-
-        <h1>Ivy's Pokedex</h1>
-
       </header>
     );
   }

@@ -13,7 +13,8 @@ class App extends Component {
   state = {
     pokemon: [],
     nameSearch: '',
-    sortDirection: ''
+    sortDirection: '',
+    page: 1
   }
 
   async componentDidMount() {
@@ -21,42 +22,64 @@ class App extends Component {
   }
 
   async fetchPokemon() {
-    const { nameSearch, sortDirection } = this.state;
+    const { nameSearch, sortDirection, page } = this.state;
 
     const response = await request
       .get(POKEDEX_API)
       .query({ pokemon: nameSearch })
       .query({ sort: 'pokemon' })
-      .query({ direction: sortDirection });
+      .query({ direction: sortDirection })
+      .query({ page: page });
 
     this.setState({
       pokemon: response.body.results
     });
   }
 
-  handleSearch = ({ search, sortDirection }) => {
+  handleSearch = ({ search, sortDirection, page }) => {
 
     this.setState(
       {
         nameSearch: search,
-        sortDirection: sortDirection
+        sortDirection: sortDirection,
+        page: 1
       },
       () => this.fetchPokemon());
+
+  }
+
+  handlePrevPage = () => {
+    this.setState(
+      { page: Math.max(this.state.page - 1, 1) },
+      () => this.fetchPokemon()
+    );
+  }
+
+  handleNextPage = () => {
+    this.setState(
+      { page: Math.max(this.state.page + 1) },
+      () => this.fetchPokemon()
+    );
   }
 
   render() {
 
-    const { pokemon } = this.state;
+    const { pokemon, page } = this.state;
 
     return (
       <div className="App" >
-
-        <Header />
-
-        <section className="Search">
+        <div>
+          <Header />
           <Search
             onSearch={this.handleSearch} />
-          <Paging />
+        </div>
+        <h1>Ivy's Pokédex</h1>
+        <section className="Search">
+          <Paging
+            page={page}
+            onPrev={this.handlePrevPage}
+            onNect={this.handleNextPage}
+          />
         </section>
 
         <main>

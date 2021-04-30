@@ -3,6 +3,8 @@
   grid-template-columns: 36px 65px 36px;
   align-items: center;
   justify-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .Paging button {
@@ -17,9 +19,12 @@
 }
 
 .Paging button:hover {
-    background: sienna;
+    background: lightpink;
 }
 
+.Paging form {
+  width: 50px;
+}
 
 .Paging span {
     font-size: .85rem;

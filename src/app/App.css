@@ -3,7 +3,7 @@
   display: grid;
   grid-template-rows: auto auto 1fr auto;
   grid-gap: 20px;
-  background: white;
+  background: rgb(132, 151, 170);
 
 }
 
@@ -15,3 +15,14 @@
   font-size: 25px;
 }
 
+h1 {
+  font-size: 50px;
+  display: flex;
+  color: pink;
+  text-shadow: black 3px 3px;
+  font-style: oblique;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+}
