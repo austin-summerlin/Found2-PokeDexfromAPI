@@ -2,16 +2,15 @@ import { Component } from 'react';
 import './Paging.css';
 
 export default class Paging extends Component {
-
-  handlePrev = () => this.props.onPaging(-1);
-  handleNext = () => this.props.onPaging(1);
+  state = {}
 
   render() {
     return (
-      <div className="Paging">
-        <button onClick={this.handlePrev}>Previous</button>
-        <button onClick={this.handleNext}>Next</button>
-      </div>
+      <form className="Paging" onSubmit={this.handleSubmit}>
+        <button className="prev">◀️</button>
+        <span>Page 1</span>
+        <button className="next">▶️</button>
+      </form>
     );
   }
 

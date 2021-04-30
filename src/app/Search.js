@@ -4,7 +4,7 @@ import './Search.css';
 export default class Search extends Component {
   state = {
     search: '',
-    sortField: '',
+    sortDirection: '',
     hpFilter: '',
 
   }
@@ -18,7 +18,7 @@ export default class Search extends Component {
   }
 
   handleSortChange = ({ target }) => {
-    this.setState({ sortField: target.value });
+    this.setState({ sortDirection: target.value });
   }
 
   handleSubmit = (e) => {
@@ -27,7 +27,7 @@ export default class Search extends Component {
   }
 
   render() {
-    const { search, sortField//,hpFilter 
+    const { search, sortDirection//,hpFilter 
     } = this.state;
     // const { hps } = this.props;
 
@@ -39,13 +39,13 @@ export default class Search extends Component {
           onChange={this.handleSearchChange}
         />
         <select
-          name="sortField"
-          value={sortField}
+          name="sortDirection"
+          value={sortDirection}
           onChange={this.handleSortChange}
         >
           <option value="">sort by...</option>
-          <option value='asc'>ascending</option>
-          <option value='desc'>descending</option>
+          <option value='asc'>A-Z</option>
+          <option value='desc'>Z-A</option>
         </select>
         {/* <select
           name="hpFilter"

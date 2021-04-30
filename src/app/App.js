@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import request from 'superagent';
 import Header from './Header';
 import Footer from './Footer';
+import Paging from './Paging';
 import Search from './Search';
 import PokemonList from '../pokemon/PokemonList';
 import './App.css';
@@ -12,7 +13,7 @@ class App extends Component {
   state = {
     pokemon: [],
     nameSearch: '',
-    sortField: ''
+    sortDirection: ''
   }
 
   async componentDidMount() {
@@ -20,25 +21,25 @@ class App extends Component {
   }
 
   async fetchPokemon() {
-    const { nameSearch, sortField } = this.state;
+    const { nameSearch, sortDirection } = this.state;
 
     const response = await request
       .get(POKEDEX_API)
       .query({ pokemon: nameSearch })
       .query({ sort: 'pokemon' })
-      .query({ direction: sortField });
+      .query({ direction: sortDirection });
 
     this.setState({
       pokemon: response.body.results
     });
   }
 
-  handleSearch = ({ search, sortField }) => {
+  handleSearch = ({ search, sortDirection }) => {
 
     this.setState(
       {
         nameSearch: search,
-        sortField: sortField
+        sortDirection: sortDirection
       },
       () => this.fetchPokemon());
   }
@@ -54,8 +55,8 @@ class App extends Component {
 
         <section className="Search">
           <Search
-            onSearch={this.handleSearch}
-            pokemon={pokemon} />
+            onSearch={this.handleSearch} />
+          <Paging />
         </section>
 
         <main>
