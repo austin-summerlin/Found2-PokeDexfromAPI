@@ -6,28 +6,46 @@ import Search from './Search';
 import PokemonList from '../pokemon/PokemonList';
 import './App.css';
 
-const POKEDEX_API = 'https://pokedex-alchemy.herokuapp.com/api/pokedex';
+const POKEDEX_API = `https://pokedex-alchemy.herokuapp.com/api/pokedex`;
 
 class App extends Component {
   state = {
-    pokemon: []
+    pokemon: [],
+    nameSearch: '',
+    sortField: ''
   }
 
   async componentDidMount() {
-    const response = await request.get(POKEDEX_API);
-    this.setState({ pokemon: response.body.results });
+    this.fetchPokemon();
   }
 
-  handleSearch = async (search) => {
-    console.log('App search got', search);
-    const response = await request.get(POKEDEX_API)
-      .query({ pokemon: search });
+  async fetchPokemon() {
+    const { nameSearch, sortField } = this.state;
 
-    this.setState({ pokemon: response.body.results });
+    const response = await request
+      .get(POKEDEX_API)
+      .query({ pokemon: nameSearch })
+      .query({ sort: 'pokemon' })
+      .query({ direction: sortField });
+
+    this.setState({
+      pokemon: response.body.results
+    });
+  }
+
+  handleSearch = ({ search, sortField }) => {
+
+    this.setState(
+      {
+        nameSearch: search,
+        sortField: sortField
+      },
+      () => this.fetchPokemon());
   }
 
   render() {
-    const pokemon = this.state.pokemon;
+
+    const { pokemon } = this.state;
 
     return (
       <div className="App" >
@@ -35,7 +53,9 @@ class App extends Component {
         <Header />
 
         <section className="Search">
-          <Search onSearch={this.handleSearch} />
+          <Search
+            onSearch={this.handleSearch}
+            pokemon={pokemon} />
         </section>
 
         <main>
