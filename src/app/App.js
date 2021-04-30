@@ -43,8 +43,8 @@ class App extends Component {
     this.setState(
       {
         nameSearch: search,
-        typeFilter: typeFilter,
-        sortDirection: sortDirection,
+        typeFilter: typeFilter || undefined,
+        sortDirection: sortDirection || undefined,
         page: 1
       },
       () => this.fetchPokemon());
