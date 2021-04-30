@@ -8,9 +8,8 @@ class PokemonItem extends Component {
 
     return (
       <li className="PokemonItem">
-        <h4>{poke.pokemon}</h4>
-
-        <p className="id">Pokedex: #{poke.id}</p>
+        <h4><a href={poke.pokedex}>{poke.pokemon}</a></h4>
+        <p className="id">#{poke.id}</p>
         <p className="type">Type: {poke.type_1}</p>
         <p className="type2">Type: {poke.type_2}</p>
         <p className="hp">HP: {poke.hp}</p>

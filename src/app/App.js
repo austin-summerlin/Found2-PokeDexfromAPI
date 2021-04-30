@@ -7,7 +7,7 @@ import Search from './Search';
 import PokemonList from '../pokemon/PokemonList';
 import './App.css';
 
-const POKEDEX_API = `https://pokedex-alchemy.herokuapp.com/api/pokedex?page=1&perPage=22`;
+const POKEDEX_API = `https://pokedex-alchemy.herokuapp.com/api/pokedex?perPage=22`;
 
 class App extends Component {
   state = {
@@ -60,7 +60,7 @@ class App extends Component {
 
   handleNextPage = () => {
     this.setState(
-      { page: Math.max(this.state.page + 1) },
+      { page: this.state.page + 1 },
       () => this.fetchPokemon()
     );
   }
@@ -81,11 +81,13 @@ class App extends Component {
         </div>
         <h1>Ivy's Pokédex</h1>
         <section className="Search">
+
           <Paging
             page={page}
             onPrev={this.handlePrevPage}
-            onNect={this.handleNextPage}
+            onNext={this.handleNextPage}
           />
+
         </section>
 
         <main>
