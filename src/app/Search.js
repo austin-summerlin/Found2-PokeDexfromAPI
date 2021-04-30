@@ -5,6 +5,7 @@ export default class Search extends Component {
   state = {
     search: '',
     sortDirection: '',
+    typeFilter: '',
     hpFilter: '',
 
   }
@@ -21,23 +22,49 @@ export default class Search extends Component {
     this.setState({ sortDirection: target.value });
   }
 
+  handleTypeChange = ({ target }) => {
+    this.setState({ typeFilter: target.value });
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.onSearch(this.state);
   }
 
+  componentDidUpdate(prevProp, prevState) {
+    if (prevState !== this.state) {
+      this.props.onSearch(this.state);
+    }
+  }
+
   render() {
-    const { search, sortDirection//,hpFilter 
-    } = this.state;
-    // const { hps } = this.props;
+    const { search, typeFilter, sortDirection } = this.state;
+    const { pokemon } = this.props;
 
     return (
       <form className="Search" onSubmit={this.handleSubmit}>
         <input
           name="search"
           value={search}
+          placeholder="Search"
           onChange={this.handleSearchChange}
         />
+        <select
+          name="typeFilter"
+          value={typeFilter}
+          onChange={this.handleTypeChange}
+        >
+          <option value="">sort types...</option>
+          {[...new Set(pokemon.map(poke => poke.type_1))]
+            .map(type => (
+              <option
+                key={type}
+                value={type}>
+                {type}
+              </option>
+            ))}
+        </select>
+
         <select
           name="sortDirection"
           value={sortDirection}
@@ -47,61 +74,7 @@ export default class Search extends Component {
           <option value='asc'>A-Z</option>
           <option value='desc'>Z-A</option>
         </select>
-        {/* <select
-          name="hpFilter"
-          value={hpFilter}
-          onChange={this.handleHpFilter}
-        >
-          <option value="">Sort By</option>
-          {hps.map(hp => (
-            <option
-              key={hp}
-              value={hp}
-            > {hp}
-            </option>
-          ))}
 
-        </select> */}
-        {/* <p>Attack:</p>
-        <select
-          name="attackFilter"
-          value={attackFilter}
-          onChange={this.handleAttackFilter}
-        >
-          <option value="">Sort by...</option>
-          {attacks.map(attack => (
-            <option
-              key={attack}
-              value={attack}
-            > {attack}
-            </option>
-          ))}
-        </select>
-        <p>Defense:</p>
-        <select
-          name="defenseFilter"
-          value={defenseFilter}
-          onChange={this.handleDefenseFilter}
-        >
-          <option value="">Sort by...</option>
-          {defenses.map(defense => (
-            <option
-              key={defense}
-              value={defense}
-            > {defense}
-            </option>
-          ))}
-        </select>
-        <p>All Data:</p>
-        <select
-          name="sortField"
-          value={sortField}
-          onChange={this.handleSearchChange}
-        >
-          <option value="">Sort by...</option>
-          <option value="title">title</option>
-          <option value="horns">horns</option>
-        </select> */}
         <button>🔎</button>
       </form>
     );

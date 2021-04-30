@@ -7,12 +7,13 @@ import Search from './Search';
 import PokemonList from '../pokemon/PokemonList';
 import './App.css';
 
-const POKEDEX_API = `https://pokedex-alchemy.herokuapp.com/api/pokedex`;
+const POKEDEX_API = `https://pokedex-alchemy.herokuapp.com/api/pokedex?page=1&perPage=22`;
 
 class App extends Component {
   state = {
     pokemon: [],
     nameSearch: '',
+    typeFilter: undefined,
     sortDirection: '',
     page: 1
   }
@@ -22,12 +23,13 @@ class App extends Component {
   }
 
   async fetchPokemon() {
-    const { nameSearch, sortDirection, page } = this.state;
+    const { nameSearch, typeFilter, sortDirection, page } = this.state;
 
     const response = await request
       .get(POKEDEX_API)
       .query({ pokemon: nameSearch })
       .query({ sort: 'pokemon' })
+      .query({ type: typeFilter })
       .query({ direction: sortDirection })
       .query({ page: page });
 
@@ -36,11 +38,12 @@ class App extends Component {
     });
   }
 
-  handleSearch = ({ search, sortDirection, page }) => {
+  handleSearch = ({ search, typeFilter, sortDirection }) => {
 
     this.setState(
       {
         nameSearch: search,
+        typeFilter: typeFilter,
         sortDirection: sortDirection,
         page: 1
       },
@@ -64,14 +67,17 @@ class App extends Component {
 
   render() {
 
-    const { pokemon, page } = this.state;
+    const { pokemon, typeFilter, page } = this.state;
 
     return (
       <div className="App" >
         <div>
           <Header />
           <Search
-            onSearch={this.handleSearch} />
+            onSearch={this.handleSearch}
+            pokemon={pokemon}
+            typeFilter={typeFilter}
+          />
         </div>
         <h1>Ivy's Pokédex</h1>
         <section className="Search">
