@@ -54,7 +54,7 @@ export default class Search extends Component {
           value={typeFilter}
           onChange={this.handleTypeChange}
         >
-          <option value="">sort types...</option>
+          <option value="">filter by type...</option>
           {[...new Set(pokemon.map(poke => poke.type_1))]
             .map(type => (
               <option
