@@ -10,14 +10,11 @@ class PokemonItem extends Component {
       <li className="PokemonItem">
         <h2>{poke.pokemon}</h2>
         <p className="type">{poke.type}</p>
-
         <p className="hp">{poke.hp}</p>
-
         <img
           src={poke.url_image}
           alt={poke.pokemon}
         />
-
       </li>
     );
   }
