@@ -27,6 +27,7 @@ export default class Search extends Component {
           value={search}
           onChange={this.handleSearchChange}
         />
+        <select></select>
         <button>🔎</button>
       </form>
     );

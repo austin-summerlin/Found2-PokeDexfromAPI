@@ -10,7 +10,7 @@ class Header extends Component {
         <img
           className="logo"
           alt="Ivy"
-          src="Ivy.png"
+          src="Ivy2.png"
         />
 
         <h1>Ivy's Pokedex</h1>
